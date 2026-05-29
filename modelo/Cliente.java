@@ -35,4 +35,8 @@ public class Cliente {
     public Oferta[] getOfertas() {
         return null;
     }
+    
+   public void mostrarCliente(){
+   	System.out.println("Cliente: "+razonSocial);
+   }
 }
