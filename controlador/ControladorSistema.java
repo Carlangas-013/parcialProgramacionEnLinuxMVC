@@ -4,41 +4,53 @@ import modelo.Cliente;
 import modelo.Oferta;
 import modelo.Postulante;
 import modelo.Postulacion;
+import vista.VistaSistema;
 
 public class ControladorSistema {
 
-    public void iniciar() {
+	private VistaSistema vista;
+	public ControladorSistema(VistaSistema vista){
+		this.vista = vista;
+	}
 
+    public void iniciar() {
+	
+	vista.mostrarTitulo();
+	
+	String ruc = vista.pedirRuc();
+	String razon = vista.pedirRazonSocial();
+
+	
         // Crear cliente
         Cliente cliente = new Cliente(
-            "12345678901",
-            "Empresa ABC",
+           ruc,
+	   razon,
             "empresa@gmail.com",
             "Carlos Torres",
             "999888777",
             "1234"
         );
+	//postulante
+	String nombres = vista.pedirNombres();
+	String apellidos = vista.pedirApellidos();
 
-        // Crear oferta
-        Oferta oferta = new Oferta(
-            "Programador Java",
-            "Desarrollo de sistemas",
-            "Sistemas",
-            "01/06/2026",
-            "30/06/2026"
-        );
-
-        // Crear postulante
-        Postulante postulante = new Postulante(
+	Postulante postulante = new Postulante(
             "76543210",
-            "Juan",
-            "Perez",
+		nombres,
+		apellidos,
             "juan@gmail.com",
             "987654321",
             "Lima"
         );
 
-        // Crear postulacion
+	Oferta oferta  = new Oferta(
+		"Programador Java",
+		"Desarrollo de Sistemas",
+		"TI",
+		"13/06/2026",
+		"30/12/2026"
+	);
+
         Postulacion postulacion = new Postulacion(
             "20/06/2026",
             "Pendiente",
@@ -47,7 +59,7 @@ public class ControladorSistema {
         );
 
         // Mostrar información
-        System.out.println("=== SISTEMA DE RECLUTAMIENTO ===");
+        vista.mostrarMensaje("Postulacion registrada correctamente");
 
         postulante.mostrarDatos();
 
